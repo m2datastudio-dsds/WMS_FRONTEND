@@ -11,22 +11,22 @@ const Header = () => {
     const location = useLocation();
     const [username, setUsername] = useState('');
 
-    // Determine the subtitle based on the current route
     const getSubtitle = (pathname) => {
         switch (pathname) {
             case '/gis-map':
                 return 'GIS BASED MAP';
-            case '/rwph':
-                return 'RWPH';
+            case '/rwph-table':
+                return 'RAW WATER PUMP STATION';
+            case '/cwph-table':
+                return 'CLEAR WATER PUMP STATION';
             case '/block-diagram':
                 return 'BLOCK DIAGRAM';
             default:
-                return 'SCADA SYSTEM'; // Default subtitle
+                return 'SCADA SYSTEM';
         }
     };
 
     const subtitle = getSubtitle(location.pathname);
-
 
     useEffect(() => {
         const storedUsername = localStorage.getItem('username');
@@ -36,24 +36,21 @@ const Header = () => {
     }, []);
 
     const handleLogout = () => {
-        const storedUsername = localStorage.getItem('username'); // Retrieve username from localStorage
-
-        // Show toast notification with the username
+        const storedUsername = localStorage.getItem('username');
         toast.success(`${storedUsername || 'Guest'} logged out successfully!`, {
             position: 'top-right',
             autoClose: 2000,
             style: { fontFamily: "'Courier New', Courier, monospace", fontWeight: "bold" },
         });
-
-        // Clear user-related data
         localStorage.clear();
-
-        // Navigate to login page after a short delay
         setTimeout(() => navigate('/'), 2000);
     };
 
     const navigateToBlockDiagram = () => {
-        navigate('/block-diagram'); // Navigate to the block diagram page
+        navigate('/block-diagram');
+    };
+    const navigateToHome = () => {
+        navigate('/gis-map');
     };
 
     return (
@@ -64,15 +61,20 @@ const Header = () => {
                 </div>
                 <div className="header-content">
                     <div className="header-title">
-                        SCADA SYSTEM FOR PILLUR - RAW WATER PUMP STATION
+                        WATER MANAGEMENT SOFTWARE
                     </div>
-                    <div className="header-subtitle">
+                    <div
+                        className={`header-subtitle ${
+                            subtitle === "RWPH" || subtitle === "CWPH" ? "blink" : ""
+                        }`}
+                    >
                         {subtitle}
                     </div>
                 </div>
                 <div className="right-section">
                     <div className="user-section">
-                        <button className="block-diagram" onClick={navigateToBlockDiagram} >BLOCK DIAGRAM</button>
+                        <button className="Home" onClick={navigateToHome}>HOME</button>
+                        <button className="block-diagram" onClick={navigateToBlockDiagram}>BLOCK DIAGRAM</button>
                         <div className="user-details">
                             <small className="user">
                                 USER: <span className="username">{username || 'Guest'}</span>

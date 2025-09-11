@@ -79,6 +79,14 @@ header {
     border-radius: 4px;
     cursor: pointer;
 }
+.Home{
+    font-family: 'Courier New', Courier, monospace;
+    padding: 3px 10px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
 .block-diagram {
     font-family: 'Courier New', Courier, monospace;
@@ -205,3 +213,4 @@ header {
         max-width: 50%;
     }
 }
+

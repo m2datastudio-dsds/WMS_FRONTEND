@@ -1,0 +1,156 @@
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: #f8f9fa; /* light background for contrast */
+  min-height: 100vh;
+}
+
+.container {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Common table styling */
+table {
+  border-collapse: collapse;
+  background: white;
+}
+
+th, td {
+  padding: 8px;
+  text-align: center;
+  font-size: 14px;
+  border: 1px solid #999;
+}
+
+th {
+  font-weight: 600;
+}
+
+/* ===== Full-width metric table ===== */
+.full-table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.full-table th {
+  background-color: #f0f0f0;
+}
+
+/* ===== Mid-row small tables ===== */
+.mid-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.small-table {
+  min-width: 140px;
+  width: 160px;
+}
+
+.small-table th {
+  background: #f9f9f9;
+}
+
+/* ===== Big 6-column tables ===== */
+.big-table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.big-table th {
+  background: #f9f9f9;
+}
+
+.big-table th:first-child {
+  border-left: 1px solid #999;
+}
+
+/* ===== Bottom single table ===== */
+.bottom-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* ===== Responsive tweaks ===== */
+@media (max-width: 992px) {
+  th, td {
+    font-size: 13px;
+    padding: 6px;
+  }
+
+  .small-table {
+    min-width: 120px;
+    width: 140px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mid-row {
+    justify-content: center;
+  }
+
+  .big-table {
+    font-size: 12px;
+  }
+}
+
+.cwph-val {
+  font-weight: 600;
+  font-size: 0.95em;
+  white-space: nowrap;
+  padding: 4px 8px;
+  
+  /* Highlight styles */
+  background-color: #fff9c4; /* soft yellow highlight */
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+/* ===== Bottom single table ===== */
+.bottom-row {
+  display: flex;
+  justify-content: center;  /* center LT1 horizontally */
+  margin-top: 30px;
+}
+.bottom-row .small-table {
+  width: 180px;
+}
+/* Mid-row grid aligned like Excel */
+.mid-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 equal blocks */
+  gap: 30px; /* spacing like Excel */
+  margin: 20px 0;
+  justify-items: center; /* center each table */
+}
+
+.mid-grid .cell {
+  display: flex;
+  justify-content: center;
+}
+/* Safe additions for ON/OFF and OPEN/CLOSE visuals */
+/* ON/OFF and OPEN/CLOSE visuals for RWPH + CWPH */
+.rwph-val,
+.cwph-val {
+  font-weight: 600;
+  text-align: center;
+}
+
+.rwph-val.open,
+.cwph-val.open  { color: #0a8f33; } /* green */
+
+.rwph-val.close,
+.cwph-val.close { color: #c62828; } /* red  */
+
+.rwph-val.on,
+.cwph-val.on    { color: #1e88e5; } /* blue */
+
+.rwph-val.off,
+.cwph-val.off   { color: #5f6368; } /* gray */
+
+
