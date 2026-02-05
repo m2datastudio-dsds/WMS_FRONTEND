@@ -3,6 +3,7 @@ import { fetchRwphTabs } from '../services/rwphApi';
 
 export function useRwphTabs({ refreshMs = 10000 } = {}) {
   const [tabs, setTabs]   = useState(null);
+  const [at, setAt]       = useState(null);   //  store timestamp
   const [loading, setL]   = useState(true);
   const [error, setError] = useState(null);
 
@@ -11,6 +12,7 @@ export function useRwphTabs({ refreshMs = 10000 } = {}) {
       setL(true);
       const json = await fetchRwphTabs();
       setTabs(json?.tabs ?? null);
+      setAt(json?.at ?? null);                
       setError(null);
     } catch (e) {
       setError(e);
@@ -28,7 +30,7 @@ export function useRwphTabs({ refreshMs = 10000 } = {}) {
 
   const v = (tab, key) => (tabs?.[tab]?.[key] ?? null);
 
-  return { v, loading, error, reload: load };
+  return { v, loading, error, at, reload: load };
 }
 
 /** Compact number formatter */

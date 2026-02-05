@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { fetchCwphTabs } from "../services/cwphApi";
 
 export function useCwphTabs({ refreshMs = 10000 } = {}) {
-  const [tabs, setTabs] = useState(null);
-  const [loading, setL] = useState(true);
+  const [tabs, setTabs]   = useState(null);
+  const [at, setAt]       = useState(null);   //  store backend timestamp
+  const [loading, setL]   = useState(true);
   const [error, setError] = useState(null);
 
   async function load() {
@@ -11,6 +12,7 @@ export function useCwphTabs({ refreshMs = 10000 } = {}) {
       setL(true);
       const json = await fetchCwphTabs();
       setTabs(json?.tabs ?? null);
+      setAt(json?.at ?? null);                
       setError(null);
     } catch (e) {
       setError(e);
@@ -27,7 +29,7 @@ export function useCwphTabs({ refreshMs = 10000 } = {}) {
   }, [refreshMs]);
 
   const v = (tab, key) => (tabs?.[tab]?.[key] ?? null);
-  return { v, loading, error, reload: load };
+  return { v, loading, error, at, reload: load };
 }
 
 export function fmt(val, digits = 3) {

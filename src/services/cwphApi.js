@@ -1,4 +1,4 @@
-const BASE = "http://localhost:5000";
+const BASE = "http://65.2.129.140:5000";
 
 export async function fetchCwphTabs() {
   const r = await fetch(`${BASE}/api/cwph/tabs`);

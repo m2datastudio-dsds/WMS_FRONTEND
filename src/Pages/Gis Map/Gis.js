@@ -141,19 +141,19 @@ const Gis = () => {
 
   useEffect(() => {
     // Fetch MBR Data
-    fetch("http://localhost:5000/api/mbr-analog/latest")
+    fetch("http://65.2.129.140:5000/api/mbr-analog/latest")
       .then((res) => res.json())
       .then((res) => setMbrData(res.data || {}))
       .catch((err) => console.error("Failed to load MBR analog data", err));
 
     // Fetch MSR Data
-    fetch("http://localhost:5000/api/msr-analog/latest")
+    fetch("http://65.2.129.140:5000/api/msr-analog/latest")
       .then((res) => res.json())
       .then((res) => setMsrData(res.data || {}))
       .catch((err) => console.error("Failed to load MSR analog data", err));
 
     // Fetch MST Data
-    fetch("http://localhost:5000/api/mst-analog/latest")
+    fetch("http://65.2.129.140:5000/api/mst-analog/latest")
       .then((res) => res.json())
       .then((res) => setMstData(res.data || {}))
       .catch((err) => console.error("Failed to load MST analog data", err));
@@ -203,7 +203,7 @@ const Gis = () => {
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/api/transmission/${tag}?_=${Date.now()}`);
+      const res = await fetch(`http://65.2.129.140:5000/api/transmission/${tag}?_=${Date.now()}`);
       const data = await res.json();
       setPopupData({ name: displayName, lat, lng, ...data });
     } catch (err) {

@@ -23,8 +23,8 @@ function ValueCell({ value, mode }) {
 
   if (mode === "valve") {
     if (!Number.isNaN(n)) {
-      if (n === 0) { display = "CLOSE"; extraClass = "close"; }
-      else if (n === 1) { display = "OPEN";  extraClass = "open"; }
+      if (n === 0) { display = "OPEN"; extraClass = "open"; }
+      else if (n === 1) { display = "CLOSE";  extraClass = "close"; }
       else { display = "-"; }
     } else {
       display = "-";
@@ -39,7 +39,7 @@ function ValueCell({ value, mode }) {
 }
 
 export default function RWPHTABLE() {
-  const { v, loading, error } = useRwphTabs({ refreshMs: 10000 });
+  const { v, loading, error, at } = useRwphTabs({ refreshMs: 10000 });
 
   return (
     <div className="page-wrapper">
@@ -47,7 +47,11 @@ export default function RWPHTABLE() {
       <div className="rwph-container">
         {/* status (optional) */}
         <div style={{ marginBottom: 8, fontSize: 12, opacity: 0.7 }}>
-          {loading ? "Loading…" : error ? `Error: ${error.message}` : "Live"}
+          {loading ? "Loading…" : error ? `Error: ${error.message}` 
+          : at
+          ? `Data recorded at: ${new Date(at).toLocaleString()}`
+          : "Data timestamp unavailable"
+          }
         </div>
 
         {/* ===== Cooling Line Water Pump row ===== */}
