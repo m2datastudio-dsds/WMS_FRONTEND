@@ -1,4 +1,4 @@
-const BASE = 'http://65.2.129.140:5000';
+const BASE = 'http://3.111.125.151:5000';
 
 export async function fetchRwphTabs() {
   const r = await fetch(`${BASE}/api/rwph/tabs`);
